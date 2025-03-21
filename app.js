@@ -1,33 +1,21 @@
+const { render } = require('ejs');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 require('dotenv').config();
 
-
-app.get('/', (req, res) => {
-  res.send(`<h1>Welcome, ${process.env.APP_USERNAME}</h1>`);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', './views'); // Ensure this points to the correct folder
 // Serve static files (CSS, images, etc.)
 app.use(express.static('public'));
 
-// Routes
-app.get('/home', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+// Route to render the homepage
+app.get('/', (req, res) => {
+    res.render('index', {
+        username: process.env.APP_USERNAME || 'Guest', // Fallback to 'Guest' if APP_USERNAME is not set
+        themeColor: process.env.THEME_COLOR || 'white' // Fallback to 'white' if THEME_COLOR is not set
+    });
 });
 
 app.get('/about', (req, res) => {
