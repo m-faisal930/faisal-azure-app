@@ -19,15 +19,24 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(__dirname + '/views/about.html');
+  res.render('about', {
+    username: process.env.APP_USERNAME || 'Guest',
+    themeColor: process.env.THEME_COLOR || 'white',
+  });
 });
 
 app.get('/projects', (req, res) => {
-  res.sendFile(__dirname + '/views/projects.html');
+  res.render('projects', {
+    username: process.env.APP_USERNAME || 'Guest',
+    themeColor: process.env.THEME_COLOR || 'white',
+  });
 });
 
 app.get('/contact', (req, res) => {
-  res.sendFile(__dirname + '/views/contact.html');
+  res.render('contact', {
+    username: process.env.APP_USERNAME || 'Guest',
+    themeColor: process.env.THEME_COLOR || 'white',
+  });
 });
 
 app.listen(port, () => {
