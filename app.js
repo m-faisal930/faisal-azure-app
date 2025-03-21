@@ -5,7 +5,7 @@ require('dotenv').config();
 
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Welcome, ${process.env.USERNAME}</h1>`);
+  res.send(`<h1>Welcome, ${process.env.APP_USERNAME}</h1>`);
 });
 
 
